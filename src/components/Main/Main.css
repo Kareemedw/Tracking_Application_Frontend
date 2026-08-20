@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  padding: 40px 20px;
+  color: #222;
+}
+
+.tracker-container {
+  max-width: 640px;
+}
+
+.tracker-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.tracker {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  /*flex-wrap: wrap;*/
+  margin: 150px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.tracker::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  background: #cfd8dc;
+  z-index: 0;
+  top: 0;
+  left: 22px;
+  width: 4px;
+  height: 100%;
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 180px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  min-width: 100%;
+}
+
+.step__comment {
+  position: absolute;
+
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 220px;
+  padding: 12px;
+
+  background-color: #333;
+  color: white;
+
+  border-radius: 8px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.2s ease;
+
+  z-index: 10;
+}
+
+.step:hover .step__comment,
+.step:focus .step__comment {
+  opacity: 1;
+  visibility: visible;
+}
+
+.step__comment p {
+  margin: 5px 0 0;
+}
+
+.step--processing .circle {
+  background-color: #1976d2;
+}
+
+.step--approved .circle {
+  background-color: #16a34a;
+}
+
+.step--actionRequired .circle {
+  background-color: #dc2626;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #1976d2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px #1976d2;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 0 8px;
+}
+
+@media (max-width: 970px) {
+  .tracker {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .tracker::before {
+    top: 0;
+    left: 22px;
+    width: 4px;
+    height: 100%;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    min-width: 100%;
+  }
+
+  .circle {
+    margin: 0 20px 0 0;
+    flex-shrink: 0;
+  }
+
+  .label {
+    padding: 0;
+  }
+}
