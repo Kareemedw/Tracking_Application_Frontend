@@ -1,0 +1,81 @@
+.admin__header {
+  margin-bottom: 32px;
+}
+
+.step__controller {
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.step__controller h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.step__controller p {
+  margin: 0;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.step__controller__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.step__controller label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.step__controller select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 15px;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.step__controller select:focus,
+.step__controller textarea:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-color: #2563eb;
+}
+
+.action__message {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.action__message textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  line-height: 1.5;
+  color: #1f2937;
+  box-sizing: border-box;
+}
+
+.action__message textarea::placeholder {
+  color: #9ca3af;
+}

@@ -2,8 +2,12 @@ import "./Header.css";
 
 function Header() {
   return (
-    <div className="header">
-      <h1 className="header__title">Application Tracking Progress</h1>
+    <main className="header">
+      <div className="header__title">
+        <p>Name: Kareem Edwards</p>
+        <h1>Application Tracking Progress</h1>
+        <p>Application Number: ABCD-114-115</p>
+      </div>
       <div className="header__colorCode">
         <p className="header__colorCode-title">Status Key:</p>
         <div className="header__status">
@@ -19,7 +23,7 @@ function Header() {
           <span>Action Required</span>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
