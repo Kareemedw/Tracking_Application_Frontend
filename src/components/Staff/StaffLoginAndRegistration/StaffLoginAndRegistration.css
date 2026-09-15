@@ -1,0 +1,149 @@
+.admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.staff__loginandregistration-container {
+  width: 100%;
+  max-width: 650px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin: 0 auto;
+}
+
+.staff__loginandregistration-container {
+  width: 100%;
+  max-width: 650px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  padding: 40px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin: 150px auto;
+}
+
+.staff__loginandregistration-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.staff__loginandregistration-container > p {
+  margin: 0 0 32px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.staff__loginandregistration-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.staff__loginandregistration-form label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.staff__loginandregistration-form input {
+  width: 100%;
+  height: 46px;
+  margin-bottom: 22px;
+  padding: 0 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  color: #1f2937;
+
+  font-family: inherit;
+  font-size: 16px;
+
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.staff__loginandregistration-form input::placeholder {
+  color: #9ca3af;
+}
+
+.staff__loginandregistration-form input:hover {
+  border-color: #94a3b8;
+}
+
+.staff__loginandregistration-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.staff__loginandregistration-form button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #1d4ed8;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.staff__loginandregistration-form button:hover {
+  background-color: #1e40af;
+}
+
+.staff__loginandregistration-form button:active {
+  transform: translateY(1px);
+}
+
+.staff__loginandregistration-form button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 2px;
+}
+
+.staff__loginandregistration-form button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 600px) {
+  .staff__loginandregistration {
+    padding: 30px 16px;
+  }
+
+  .staff__loginandregistration-container {
+    padding: 28px 20px;
+  }
+
+  .staff__loginandregistration-title {
+    font-size: 25px;
+  }
+
+  .staff__loginandregistration-container > p {
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+}

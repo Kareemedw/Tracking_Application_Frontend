@@ -5,15 +5,12 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  padding: 40px 20px;
-  color: #222;
+  margin: 0;
 }
 
 .tracker-container {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
 
   width: 100%;

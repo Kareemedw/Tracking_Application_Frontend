@@ -1,16 +1,19 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import AdminController from "../AdminController/AdminController";
-import CreateCustomer from "../CreateCustomer/CreateCustomer";
+import CreateCustomer from "../Customer/CreateCustomer";
 import "./App.css";
-import StaffDashBoard from "../StaffDashBoard/StaffDashBoard";
+import StaffDashBoard from "../Staff/StaffDashBoard";
 import AllApplicants from "../Applicants/AllApplicants";
 import ApplicantsOngoing from "../Applicants/ApplicantsOngoing";
 import ApplicantsCompleted from "../Applicants/ApplicantsCompleted";
 import DataAndRecords from "../Applicants/DataAndRecords";
+import CustomerLogin from "../Customer/CustomerLogin";
+import StaffLogin from "../Staff/StaffLoginAndRegistration/StaffLogin";
+import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistration";
 
 function App() {
   const statusInfo = {
@@ -92,9 +95,47 @@ function App() {
 
   const [lastName, setLastName] = useState("");
 
+  const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
+
   const selectedStep = steps.find((step) => step.id === selectedStepId) || null;
+
+  const [temporaryPassword, setTemporaryPassword] = useState("");
+
+  const [error, setError] = useState("");
+
+  const [applicants, setApplicants] = useState("");
+
+  useEffect(() => {
+    const getApplicants = async () => {
+      try {
+        const token = localStorage.getItem("staffToken");
+
+        const res = await fetch("http://localhost:5001/applicants", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.message || "Unable to retrieve applicants");
+        }
+
+        setApplicants(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getApplicants();
+  }, []);
 
   const handleStatusChange = (stepId, newStatus) => {
     setSteps((currentSteps) =>
@@ -104,52 +145,67 @@ function App() {
     );
   };
 
-  const handleMessageChange = (stepId, newMessage) => {
-    setSteps((currentSteps) =>
-      currentSteps.map((step) =>
-        step.id === stepId
-          ? {
-              ...step,
-              message: {
-                ...step.message,
-                actionRequired: newMessage,
-              },
-            }
-          : step,
-      ),
-    );
+  const handleMessageChange = async (stepId, newMessage) => {
+    try {
+      const token = localStorage.getItem("staffToken");
+
+      const res = await fetch(
+        `http://localhost:5001/applicants/${applicantId}/steps/${stepNumber}`,
+        {
+          method: "PATCH",
+
+          headers: {
+            "Content-Type": "application/json",
+
+            Authorization: `Bearer ${token}`,
+          },
+
+          body: JSON.stringify({
+            status: newStatus,
+          }),
+        },
+      );
+
+      const updatedApplicant = await res.json();
+
+      setApplicant(updatedApplicant);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const applicants = [
-    {
-      id: 1,
-      name: "Kareem Edwards",
-      applicationNumber: "ABCDE11111",
-      Status: "Permanent",
-      applicationStatus: "In process",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      applicationNumber: "ABCDE11112",
-      Status: "Temproary",
-      applicationStatus: "In process",
-    },
-    {
-      id: 3,
-      name: "John Doe",
-      applicationNumber: "ABCDE11113",
-      Status: "Temporary",
-      applicationStatus: "Approved",
-    },
-    {
-      id: 4,
-      name: "Jane Doe",
-      applicationNumber: "ABCDE11114",
-      Status: "Permanent",
-      applicationStatus: "Approved",
-    },
-  ];
+  // const applicants = [
+  //   {
+  //     id: 1,
+  //     name: "Kareem Edwards",
+  //     applicationNumber: "ABCDE11111",
+  //     Status: "Permanent",
+  //     applicationStatus: "In process",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Jane Smith",
+  //     applicationNumber: "ABCDE11112",
+  //     Status: "Temproary",
+  //     applicationStatus: "In process",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "John Doe",
+  //     applicationNumber: "ABCDE11113",
+  //     Status: "Temporary",
+  //     applicationStatus: "Approved",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Jane Doe",
+  //     applicationNumber: "ABCDE11114",
+  //     Status: "Permanent",
+  //     applicationStatus: "Approved",
+  //   },
+  // ];
+
+  // const [temporaryPassword, setTemporaryPassword] = useState("");
 
   return (
     <div className="page">
@@ -157,6 +213,49 @@ function App() {
         <Routes>
           <Route
             path="/"
+            element={
+              <>
+                <CustomerLogin
+                  applicationNumber={applicationNumber}
+                  lastName={lastName}
+                  password={password}
+                  setApplicationNumber={setApplicationNumber}
+                  setLastName={setLastName}
+                  setPassword={setPassword}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/staff-login"
+            element={
+              <>
+                <StaffLogin
+                  email={email}
+                  password={password}
+                  setEmail={setEmail}
+                  setPassword={setPassword}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/staff-registration"
+            element={
+              <>
+                <StaffRegistration
+                  email={email}
+                  password={password}
+                  confirmPassword={confirmPassword}
+                  setEmail={setEmail}
+                  setPassword={setPassword}
+                  setConfirmPassword={setConfirmPassword}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/customer-dashboard"
             element={
               <>
                 <Header />
@@ -192,6 +291,11 @@ function App() {
                   setFirstName={setFirstName}
                   setLastName={setLastName}
                   setPassword={setPassword}
+                  setEmail={setEmail}
+                  temporaryPassword={temporaryPassword}
+                  setTemporaryPassword={setTemporaryPassword}
+                  error={error}
+                  setError={setError}
                 />
               </>
             }
@@ -200,7 +304,10 @@ function App() {
             path="/admin-dashboard/all-applicants"
             element={
               <>
-                <AllApplicants applicants={applicants} />
+                <AllApplicants
+                  applicants={applicants}
+                  setApplicants={setApplicants}
+                />
               </>
             }
           />

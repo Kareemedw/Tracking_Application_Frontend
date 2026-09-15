@@ -4,8 +4,11 @@ function Header() {
   return (
     <main className="header">
       <div className="header__title">
-        <p>Name: Kareem Edwards</p>
+        <h1>Immigration Tracking System</h1>
+      </div>
+      <div className="header__title-customer">
         <h1>Application Tracking Progress</h1>
+        <p>Applicant: Kareem Edwards</p>
         <p>Application Number: ABCD-114-115</p>
       </div>
       <div className="header__colorCode">

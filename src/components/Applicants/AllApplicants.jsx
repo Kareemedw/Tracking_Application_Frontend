@@ -6,7 +6,7 @@ function AllApplicants({ applicants }) {
   return (
     <main>
       <div className="admin__header">
-        <h1>Mission: Application Management Portal - List of All Applicants</h1>
+        <h1>Mission: Application Management Portal - List of Applicants</h1>
         <NavLink className="applicant__nav-link" to="/admin-dashboard">
           <p>Admin DashBoard</p>
         </NavLink>
