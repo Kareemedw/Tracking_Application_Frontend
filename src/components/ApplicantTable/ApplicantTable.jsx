@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./ApplicantTable.css";
 
-function ApplicantTable({ applicants }) {
+function ApplicantTable({ applicants, firstName, lastName }) {
+  const navigate = useNavigate();
+
   return (
     <div className="applicant-table__container">
       <h2 className="applicant-table__title">Applicants</h2>
@@ -20,9 +22,15 @@ function ApplicantTable({ applicants }) {
           {applicants.map((applicant) => (
             <tr
               key={applicant._id}
-              onClick={() => navigate(`/admin/applicants/${applicant._id}`)}
+              onClick={() =>
+                navigate(
+                  `/admin-dashboard/customer-controller/${applicant._id}`,
+                )
+              }
             >
-              <td>{applicant.name}</td>
+              <td>
+                {applicant.firstName} {applicant.lastName}
+              </td>
 
               <td>{applicant.applicationNumber}</td>
 

@@ -93,6 +93,10 @@ body {
   margin: 5px 0 0;
 }
 
+.step--stageNotStarted .circle {
+  background-color: grey;
+}
+
 .step--processing .circle {
   background-color: #1976d2;
 }
