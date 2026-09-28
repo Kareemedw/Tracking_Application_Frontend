@@ -14,6 +14,7 @@ import DataAndRecords from "../Applicants/DataAndRecords";
 import CustomerLogin from "../Customer/CustomerLogin";
 import StaffLogin from "../Staff/StaffLoginAndRegistration/StaffLogin";
 import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistration";
+import NewPassword from "../Customer/NewPassword";
 
 function App() {
   const [selectedStepId, setSelectedStepId] = useState(null);
@@ -88,6 +89,14 @@ function App() {
                   setLastName={setLastName}
                   setPassword={setPassword}
                 />
+              </>
+            }
+          />
+          <Route
+            path="/login/new-password"
+            element={
+              <>
+                <NewPassword />
               </>
             }
           />

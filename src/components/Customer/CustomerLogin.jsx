@@ -12,7 +12,7 @@ function CustomerLogin({
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5001/applicant/signin", {
+      const res = await fetch("http://localhost:5001/applicants/signin", {
         method: "POST",
 
         headers: {
@@ -37,7 +37,7 @@ function CustomerLogin({
       if (data.mustChangePassword) {
         navigate("/change-password");
       } else {
-        navigate("/application");
+        navigate("/customer-dashboard/:applicantId");
       }
     } catch (err) {
       console.error(err);
@@ -49,10 +49,10 @@ function CustomerLogin({
       <div className="admin__header">
         <h1>Immigration Tracking System</h1>
       </div>
-      <div className="create__customer-container">
-        <h1 className="create__customer-title"> Applicant Login</h1>
+      <div className="customer__container">
+        <h1 className="customer__title"> Applicant Login</h1>
         <p>Please Login to track your application</p>
-        <form onSubmit={handleSubmit} className="create__customer-form">
+        <form onSubmit={handleSubmit} className="customer__form">
           <input
             value={applicationNumber}
             onChange={(e) => setApplicationNumber(e.target.value)}

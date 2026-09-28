@@ -63,10 +63,10 @@ function CreateCustomer({
           <p>Admin DashBoard</p>
         </NavLink>
       </div>
-      <div className="create__customer-container">
-        <h1 className="create__customer-title">Create Applicant Login</h1>
+      <div className="customer__container">
+        <h1 className="customer__title">Create Applicant Login</h1>
         <p>Create login credentials for a new applicant</p>
-        <form className="create__customer-form" onSubmit={handleSubmit}>
+        <form className="customer__form" onSubmit={handleSubmit}>
           <label htmlFor="applicationNumber">Application Number</label>
           <input
             type="text"
