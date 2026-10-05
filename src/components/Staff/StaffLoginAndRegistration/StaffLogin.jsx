@@ -7,7 +7,7 @@ function StaffLogin({ email, password, setEmail, setPassword }) {
   return (
     <main className="staff__loginandregistration">
       <div className="admin__header">
-        <h1>Immigration Tracking System</h1>
+        <h1>Passport And Citizens Tracking System(PACTS)</h1>
       </div>
       <div className="staff__loginandregistration-container">
         <h1 className="staff__loginandregistration-title">Staff Login</h1>
