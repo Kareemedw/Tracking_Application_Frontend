@@ -15,6 +15,7 @@ import CustomerLogin from "../Customer/CustomerLogin";
 import StaffLogin from "../Staff/StaffLoginAndRegistration/StaffLogin";
 import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistration";
 import NewPassword from "../Customer/NewPassword";
+import { BASE_URL } from "../../utils/constants";
 
 function App() {
   const [selectedStepId, setSelectedStepId] = useState(null);
@@ -48,7 +49,7 @@ function App() {
       try {
         const token = localStorage.getItem("staffToken");
 
-        const res = await fetch("http://localhost:5001/applicants", {
+        const res = await fetch("BASE_URL/applicants", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
