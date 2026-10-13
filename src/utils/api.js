@@ -1,10 +1,12 @@
+import { BASE_URL } from "./constants";
+
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
     const token = localStorage.getItem("staffToken");
 
-    const res = await fetch("http://localhost:5001/applicants", {
+    const res = await fetch("BASE_URL/applicants", {
       method: "POST",
 
       headers: {

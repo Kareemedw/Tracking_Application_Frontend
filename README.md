@@ -265,6 +265,12 @@ v
 Document Prepared for Applicant
 Staff members update these stages through the administrative portal, while applicants can view the updated information through their tracking portal.
 
+## Deployed links
+
+https://pacts.edsintech.com/
+https://www.pacts.edsintech.com/
+https://api.pacts.edsintech.com/
+
 ## Future Improvements
 
 Potential future improvements include:
