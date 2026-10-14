@@ -1,5 +1,5 @@
 const BASE_URL =
-  process.env.NODE_ENV === "production"
+  import.meta.env.PROD === "production"
     ? "https://api.pacts.edsintech.com"
     : "http://localhost:5001";
 
