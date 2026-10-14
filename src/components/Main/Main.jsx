@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import MessagePanel from "../MessagePanel/MessagePanel";
 import "./Main.css";
+import { BASE_URL } from "../../utils/constants";
 
 function Main() {
   const { applicantId } = useParams();
@@ -29,9 +30,7 @@ function Main() {
 
     const getApplicant = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:5001/applicants/${applicantId}`,
-        );
+        const res = await fetch(`${BASE_URL}/applicants/${applicantId}`);
 
         const data = await res.json();
 

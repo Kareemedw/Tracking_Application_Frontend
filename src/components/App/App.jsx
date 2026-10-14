@@ -49,7 +49,7 @@ function App() {
       try {
         const token = localStorage.getItem("staffToken");
 
-        const res = await fetch("BASE_URL/applicants", {
+        const res = await fetch(`${BASE_URL}/applicants`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

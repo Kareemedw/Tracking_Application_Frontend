@@ -1,4 +1,5 @@
 import "./Customer.css";
+import { BASE_URL } from "../../utils/constants";
 
 function CustomerLogin({
   applicationNumber,
@@ -12,7 +13,7 @@ function CustomerLogin({
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5001/applicants/signin", {
+      const res = await fetch(`${BASE_URL}/applicants/signin`, {
         method: "POST",
 
         headers: {

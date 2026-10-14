@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
+import { BASE_URL } from "../../utils/constants";
 import "./AdminController.css";
 
 function AdminController() {
@@ -13,9 +14,7 @@ function AdminController() {
 
     const getApplicant = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:5001/applicants/${applicantId}`,
-        );
+        const res = await fetch(`${BASE_URL}/applicants/${applicantId}`);
 
         const data = await res.json();
 
@@ -54,7 +53,7 @@ function AdminController() {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/applicants/${applicantId}/steps/${stepNumber}`,
+        `${BASE_URL}/applicants/${applicantId}/steps/${stepNumber}`,
         {
           method: "PATCH",
 
@@ -103,7 +102,7 @@ function AdminController() {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/applicants/${applicantId}/steps/${stepNumber}`,
+        `${BASE_URL}/applicants/${applicantId}/steps/${stepNumber}`,
         {
           method: "PATCH",
 

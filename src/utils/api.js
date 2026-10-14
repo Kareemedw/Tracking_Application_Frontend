@@ -6,7 +6,7 @@ const handleSubmit = async (e) => {
   try {
     const token = localStorage.getItem("staffToken");
 
-    const res = await fetch("BASE_URL/applicants", {
+    const res = await fetch(`${BASE_URL}/applicants`, {
       method: "POST",
 
       headers: {

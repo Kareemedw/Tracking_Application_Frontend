@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import handleSubmit from "../../utils/api";
 import "./Customer.css";
+import { BASE_URL } from "../../utils/constants";
 
 function CreateCustomer({
   applicationNumber,
@@ -21,7 +22,7 @@ function CreateCustomer({
     try {
       setError("");
 
-      const res = await fetch("http://localhost:5001/applicants", {
+      const res = await fetch(`${BASE_URL}/applicants`, {
         method: "POST",
 
         headers: {
