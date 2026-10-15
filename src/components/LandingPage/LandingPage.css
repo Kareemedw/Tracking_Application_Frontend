@@ -18,7 +18,7 @@
 .landing__header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .landing__header-1 {
@@ -41,7 +41,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  margin-top: 200px;
+  margin-top: 80px;
 }
 
 .landing__card {
