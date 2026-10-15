@@ -43,7 +43,7 @@ function Header() {
   return (
     <main className="header">
       <div className="header__title">
-        <h1>Passport And Citizens Tracking System(PACTS)</h1>
+        <h1>Passport And Citizenship Tracking System(PACTS)</h1>
       </div>
       <div className="header__title-customer">
         <h1>Application Tracking Progress</h1>
