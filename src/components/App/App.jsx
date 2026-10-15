@@ -16,6 +16,7 @@ import StaffLogin from "../Staff/StaffLoginAndRegistration/StaffLogin";
 import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistration";
 import NewPassword from "../Customer/NewPassword";
 import { BASE_URL } from "../../utils/constants";
+import LandingPage from "../LandingPage/LandingPage";
 
 function App() {
   const [selectedStepId, setSelectedStepId] = useState(null);
@@ -78,6 +79,14 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <LandingPage />
+              </>
+            }
+          />
           <Route
             path="/login"
             element={
