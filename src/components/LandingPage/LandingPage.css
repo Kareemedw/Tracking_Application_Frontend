@@ -5,6 +5,7 @@
   align-items: center;
   background: #f4f7fb;
   padding: 40px 20px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .landing__container {
@@ -13,12 +14,13 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .landing__header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 }
 
 .landing__header-1 {

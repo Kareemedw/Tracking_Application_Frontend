@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 15px 0;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .header__colorCode {
@@ -61,4 +62,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: black;
 }

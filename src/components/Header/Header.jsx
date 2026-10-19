@@ -43,7 +43,7 @@ function Header() {
   return (
     <main className="header">
       <div className="header__title">
-        <h1>Passport And Citizenship Tracking System(PACTS)</h1>
+        <h1>Passport And Citizenship Tracking System (PACTS)</h1>
       </div>
       <div className="header__title-customer">
         <h1>Application Tracking Progress</h1>
@@ -51,6 +51,9 @@ function Header() {
           Applicant: {applicant.firstName} {applicant.lastName}
         </p>
         <p>Application Number: {applicant.applicationNumber}</p>
+        <NavLink to="/" className="nav__link">
+          <h4>Back to Welcome Page</h4>
+        </NavLink>
       </div>
       <div className="header__colorCode">
         <p className="header__colorCode-title">Status Key:</p>

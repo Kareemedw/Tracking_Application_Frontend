@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 15px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .dashboard__nav-link {
@@ -20,6 +21,7 @@
   box-sizing: border-box;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   margin: 150px auto;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .customer__title {
