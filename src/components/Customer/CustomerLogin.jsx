@@ -48,7 +48,7 @@ function CustomerLogin({
   return (
     <main className="customer__login">
       <div className="admin__header">
-        <h1>Passport And Citizens Tracking System(PACTS)</h1>
+        <h1>Passport And Citizenship Tracking System (PACTS)</h1>
       </div>
       <div className="customer__container">
         <h1 className="customer__title"> Applicant Login</h1>

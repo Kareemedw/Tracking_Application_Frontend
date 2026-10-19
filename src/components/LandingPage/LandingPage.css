@@ -18,7 +18,7 @@
 .landing__header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 
 .landing__header-1 {
@@ -31,6 +31,10 @@
 .landing__heading h1 {
   font-size: 42px;
   color: #16345c;
+}
+
+.landing__heading h3 {
+  color: red;
 }
 
 .landing__heading p {

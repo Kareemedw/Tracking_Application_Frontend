@@ -18,6 +18,7 @@ const handleSubmit = async (e) => {
         applicationNumber,
         firstName,
         lastName,
+        email,
       }),
     });
 

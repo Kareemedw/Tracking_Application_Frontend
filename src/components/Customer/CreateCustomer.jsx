@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import handleSubmit from "../../utils/api";
+//import handleSubmit from "../../utils/api";
 import "./Customer.css";
 import { BASE_URL } from "../../utils/constants";
 

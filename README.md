@@ -4,6 +4,8 @@ A full-stack web application designed to help applicants track the progress of p
 
 The application is built using the MERN stack: MongoDB, Express.js, React, and Node.js.
 
+NOTE: This project is the first draft of my Application Tracking System, designed to allow applicants to monitor the progress of their applications. Staff members are responsible for creating applicant accounts, while the third-party API Resend automatically emails applicants their login credentials. Login and authentication will be implimented in stage two. The Staff Portal redirects staff members to the Admin Dashboard, where they can manage applicant accounts and update application statuses.
+
 ## Github Backend link
 
 https://github.com/Kareemedw/Tracking_Application_Backend

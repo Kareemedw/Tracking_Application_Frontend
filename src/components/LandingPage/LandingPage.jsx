@@ -25,13 +25,15 @@ function LandingPage() {
           <section className="landing__card">
             <h3>Applicant Portal</h3>
             <p>View your application status and receive important updates.</p>
-            <Link to="/login">Applicant Login</Link>
+            <Link to="/customer-dashboard/6ad3b1d19581ff216c169d7b">
+              Applicant Dashboard
+            </Link>
           </section>
 
           <section className="landing__card">
             <h3>Staff Portal</h3>
             <p>Manage applications and update applicant progress.</p>
-            <Link to="/staff-login">Staff Login</Link>
+            <Link to="/admin-dashboard">Staff Portal</Link>
           </section>
         </div>
 

@@ -5,8 +5,14 @@ function StaffDashBoard() {
   return (
     <main className="admin__dashboard">
       <div className="admin__dashboard-header">
-        <h1>Mission: Application Managment Portal</h1>
-        <p>Admin Name: Chantal Edwards</p>
+        <h1>Passport and Citizenship Tracking System (PACTS)</h1>
+        <h2>Mission: Application Management Portal</h2>
+        <div className="admin__dashboard-header_1">
+          <p>Admin Name: Chantal Edwards</p>
+          <NavLink to="/" className="dashboard__nav-link">
+            <h4>Back to Welcome Page</h4>
+          </NavLink>
+        </div>
       </div>
       <div className="admin__dashboard-container">
         <NavLink
