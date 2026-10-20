@@ -6,6 +6,8 @@
   padding: 25px;
   box-sizing: border-box;
   overflow-x: auto;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 
 .applicant-table__title {
@@ -24,14 +26,12 @@
 .applicant-table th {
   padding: 14px 16px;
   text-align: left;
-  font-size: 14px;
   font-weight: 600;
   color: #6b7280;
 }
 
 .applicant-table td {
   padding: 18px 16px;
-  font-size: 15px;
   color: #1f2937;
 }
 

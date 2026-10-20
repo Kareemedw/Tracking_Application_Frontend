@@ -8,18 +8,20 @@ body {
   margin: 0;
 }
 
-.tracker-container {
+.tracker__container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
   width: 100%;
+  font-size: 20px;
 }
 
-.tracker-title {
+.tracker__title {
   text-align: center;
   font-size: 28px;
   margin-bottom: 40px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .tracker {
@@ -126,7 +128,6 @@ body {
 }
 
 .label {
-  font-size: 14px;
   line-height: 1.4;
   padding: 0 8px;
 }

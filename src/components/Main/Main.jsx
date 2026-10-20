@@ -61,7 +61,7 @@ function Main() {
     applicant.steps?.find((step) => step.stepNumber === selectedStepId) || null;
 
   return (
-    <main className="tracker-container">
+    <main className="tracker__container">
       <div className="tracker">
         {applicant.steps?.map((step) => {
           const status = statusInfo[step.status];
