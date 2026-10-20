@@ -13,6 +13,7 @@ function CreateCustomer({
   email,
   setEmail,
   temporaryPassword,
+  setTemporaryPassword,
   error,
   setError,
 }) {
@@ -21,6 +22,8 @@ function CreateCustomer({
 
     try {
       setError("");
+
+      console.log("FORM EMAIL:", email);
 
       const res = await fetch(`${BASE_URL}/applicants`, {
         method: "POST",

@@ -164,6 +164,7 @@ function App() {
                   firstName={firstName}
                   lastName={lastName}
                   password={password}
+                  email={email}
                   setApplicationNumber={setApplicationNumber}
                   setFirstName={setFirstName}
                   setLastName={setLastName}
