@@ -62,6 +62,7 @@ function Main() {
 
   return (
     <main className="tracker__container">
+      <MessagePanel selectedStep={selectedStep} statusInfo={statusInfo} />
       <div className="tracker">
         {applicant.steps?.map((step) => {
           const status = statusInfo[step.status];
@@ -89,7 +90,6 @@ function Main() {
           );
         })}
       </div>
-      <MessagePanel selectedStep={selectedStep} statusInfo={statusInfo} />
     </main>
   );
 }

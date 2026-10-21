@@ -52,8 +52,6 @@
 }
 
 .header__title {
-  font-size: 20px;
-  font-family: Yellowtail, cursive;
   font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: space-between;
@@ -73,4 +71,10 @@
   color: black;
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+  .header__title h1 {
+    font-size: 20px;
+  }
 }

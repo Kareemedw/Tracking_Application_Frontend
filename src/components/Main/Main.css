@@ -156,6 +156,17 @@ body {
   .step__controller {
     padding: 18px;
   }
+
+  .tracker__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .tracker {
+    margin: 20px 0;
+  }
+  .message__panel {
+    margin: 20px 0;
+  }
 }
 
 @media (max-width: 970px) {
