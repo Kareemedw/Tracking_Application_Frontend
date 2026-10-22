@@ -82,3 +82,16 @@
 .action__message textarea::placeholder {
   color: #9ca3af;
 }
+
+@media screen and (max-width: 650px) {
+  .admin__header {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+  }
+
+  .admin__header h1 {
+    margin-left: 40px;
+    font-size: 25px;
+  }
+}
