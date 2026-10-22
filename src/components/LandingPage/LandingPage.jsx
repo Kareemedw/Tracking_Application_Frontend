@@ -23,11 +23,9 @@ function LandingPage() {
 
         <div className="landing__portals">
           <section className="landing__card">
-            <h3>Applicant Portal</h3>
+            <h3>Applicant Login</h3>
             <p>View your application status and receive important updates.</p>
-            <Link to="/customer-dashboard/6ad3b1d19581ff216c169d7b">
-              Applicant Dashboard
-            </Link>
+            <Link to="/login">Applicant Login</Link>
           </section>
 
           <section className="landing__card">

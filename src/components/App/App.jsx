@@ -17,6 +17,8 @@ import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistrat
 import NewPassword from "../Customer/NewPassword";
 import { BASE_URL } from "../../utils/constants";
 import LandingPage from "../LandingPage/LandingPage";
+import ProtectedRoute from "./ProtectedRoute";
+// import StaffHeader from "../Header/StaffHeader";
 
 function App() {
   const [selectedStepId, setSelectedStepId] = useState(null);
@@ -44,6 +46,14 @@ function App() {
   const [error, setError] = useState("");
 
   const [applicants, setApplicants] = useState([]);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [userRole, setUserRole] = useState(false);
+
+  const [mustChangePassword, setMustChangePassword] = useState(true);
+
+  const [isCheckingToken, setIsCheckingToken] = useState(true);
 
   useEffect(() => {
     const getApplicants = async () => {
@@ -98,16 +108,30 @@ function App() {
                   setApplicationNumber={setApplicationNumber}
                   setLastName={setLastName}
                   setPassword={setPassword}
+                  setIsLoggedIn={setIsLoggedIn}
+                  setUserRole={setUserRole}
+                  mustChangePassword={mustChangePassword}
+                  setMustChangePassword={setMustChangePassword}
                 />
               </>
             }
           />
           <Route
-            path="/login/new-password"
+            path="/login/new-password/:applicantId"
             element={
-              <>
-                <NewPassword />
-              </>
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                userRole={userRole}
+                allowedRoles={["customer"]}
+              >
+                <NewPassword
+                  password={password}
+                  setPassword={setPassword}
+                  confirmPassword={confirmPassword}
+                  setConfirmPassword={setConfirmPassword}
+                  setMustChangePassword={setMustChangePassword}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
@@ -141,16 +165,22 @@ function App() {
           <Route
             path="/customer-dashboard/:applicantId"
             element={
-              <>
-                <Header />
-                <Main />
-              </>
+              <ProtectedRoute
+                isLoggedIn={isLoggedIn}
+                userRole={userRole}
+                allowedRoles={["customer"]}
+                mustChangePassword={mustChangePassword}
+              >
+                <Header mustChangePassword={mustChangePassword} />
+                <Main mustChangePassword={mustChangePassword} />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/admin-dashboard"
             element={
               <>
+                {/* <StaffHeader /> */}
                 <StaffDashBoard />
               </>
             }
@@ -159,6 +189,7 @@ function App() {
             path="/admin-dashboard/create-applicant"
             element={
               <>
+                {/* <StaffHeader /> */}
                 <CreateCustomer
                   applicationNumber={applicationNumber}
                   firstName={firstName}

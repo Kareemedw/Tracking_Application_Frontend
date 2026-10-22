@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import MessagePanel from "../MessagePanel/MessagePanel";
 import "./Main.css";
 import { BASE_URL } from "../../utils/constants";
+import { getCurrentApplicant } from "../../utils/api";
 
-function Main() {
+function Main({ mustChangePassword }) {
   const { applicantId } = useParams();
   const [applicant, setApplicant] = useState(null);
   const [selectedStepId, setSelectedStepId] = useState(null);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const statusInfo = {
     stageNotStarted: {
@@ -25,32 +27,46 @@ function Main() {
     },
   };
 
-  useEffect(() => {
-    if (!applicantId) return;
+  const navigate = useNavigate();
 
+  useEffect(() => {
     const getApplicant = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/applicants/${applicantId}`);
+        setError("");
 
-        const data = await res.json();
+        const data = await getCurrentApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 
-        if (!res.ok) {
-          throw new Error(data.message || "Unable to retrieve applicant");
+        const currentApplicant = data.applicant ?? data;
+
+        if (currentApplicant.mustChangePassword) {
+          navigate(
+            `/login/new-password/${currentApplicant.id ?? currentApplicant._id}`,
+            { replace: true },
+          );
+          return;
         }
 
-        setApplicant(data);
+        setApplicant(currentApplicant);
       } catch (err) {
+        console.error("Unable to retrieve applicant:", err);
+
         setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getApplicant();
   }, [applicantId]);
 
+  if (isLoading) {
+    return <p>Loading applicant information...</p>;
+  }
+
   if (error) {
-    return <p>{error}</p>;
+    return <p>Error: {error}</p>;
   }
 
   if (!applicant) {

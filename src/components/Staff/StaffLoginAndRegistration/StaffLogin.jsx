@@ -1,4 +1,3 @@
-import handleSubmit from "../../../utils/api";
 import "./StaffLoginAndRegistration.css";
 
 function StaffLogin({ email, password, setEmail, setPassword }) {
