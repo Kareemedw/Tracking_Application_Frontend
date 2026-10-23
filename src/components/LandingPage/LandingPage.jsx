@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
+import logo from "../../assets/pacts-logo.png";
 
 function LandingPage() {
   return (
@@ -13,7 +14,14 @@ function LandingPage() {
           <h3>Secure Portal</h3>
         </div>
         <div className="landing__heading">
-          <h1>Welcome to PACTS</h1>
+          <div className="landing__heading landing__heading_1">
+            <h1>Welcome to PACTS</h1>
+            <img
+              src={logo}
+              alt="Pacts Logo"
+              className="landing__heading-image"
+            />
+          </div>
           <h2>Passport and Citizenship Application Tracking System</h2>
           <p>
             Securely track your application or access the staff management
