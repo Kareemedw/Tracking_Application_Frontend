@@ -93,7 +93,7 @@ export const getCurrentApplicant = async (applicantId) => {
 
 // STAFF: Get all applicants
 export const getApplicants = async () => {
-  const token = getStaffToken();
+  const token = localStorage.getItem("staffToken");
 
   const res = await fetch(`${BASE_URL}/customers/applicants`, {
     method: "GET",
@@ -107,13 +107,14 @@ export const getApplicants = async () => {
 
 // STAFF: Create applicant
 export const createApplicant = async (applicantData) => {
-  const token = getStaffToken();
+  const token = getApplicantToken();
 
-  const res = await fetch(`${BASE_URL}/customers/applicants`, {
+  const res = await fetch(`${BASE_URL}/applicants`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
+      //...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     body: JSON.stringify(applicantData),
   });
