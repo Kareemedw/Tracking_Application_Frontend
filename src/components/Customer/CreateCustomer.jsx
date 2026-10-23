@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 //import handleSubmit from "../../utils/api";
 import "./Customer.css";
 import { BASE_URL } from "../../utils/constants";
+import { createApplicant } from "../../utils/api";
 
 function CreateCustomer({
   applicationNumber,
@@ -16,35 +17,39 @@ function CreateCustomer({
   setTemporaryPassword,
   error,
   setError,
+  validateForm,
+  setErrors,
+  errors,
 }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const values = {
+      applicationNumber,
+      firstName,
+      lastName,
+      email,
+    };
+
+    const validationErrors = validateForm(values);
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
 
     try {
       setError("");
 
       console.log("FORM EMAIL:", email);
 
-      const res = await fetch(`${BASE_URL}/applicants`, {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          applicationNumber,
-          firstName,
-          lastName,
-          email,
-        }),
+      const data = await createApplicant({
+        applicationNumber,
+        firstName,
+        lastName,
+        email,
       });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Unable to create applicant");
-      }
 
       console.log("Applicant created:", data);
 
@@ -77,28 +82,40 @@ function CreateCustomer({
             id="applicationNumber"
             value={applicationNumber}
             onChange={(e) => setApplicationNumber(e.target.value)}
+            className={errors.applicationNumber ? "form__input--error" : ""}
           />
+          {errors.applicationNumber && (
+            <p className="form__error">{errors.applicationNumber}</p>
+          )}
           <label htmlFor="firstName">First Name</label>
           <input
             type="text"
             id="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            className={errors.firstName ? "form__input--error" : ""}
           />
+          {errors.firstName && (
+            <p className="form__error">{errors.firstName}</p>
+          )}
           <label htmlFor="lastName">Last Name</label>
           <input
             type="text"
             id="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            className={errors.lastName ? "form__input--error" : ""}
           />
+          {errors.lastName && <p className="form__error">{errors.lastName}</p>}
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={errors.email ? "form__input--error" : ""}
           />
+          {errors.email && <p className="form__error">{errors.email}</p>}
           <button type="submit">Create Applicant</button>
         </form>
         {temporaryPassword && (

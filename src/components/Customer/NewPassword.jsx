@@ -8,6 +8,11 @@ function NewPassword({
   confirmPassword,
   setMustChangePassword,
   setConfirmPassword,
+  validateForm,
+  setErrors,
+  errors,
+  error,
+  setError,
 }) {
   const [newPassword, setNewPassword] = useState("");
 
@@ -16,8 +21,6 @@ function NewPassword({
   const [isLoading, setIsLoading] = useState(false);
 
   const { applicantId } = useParams();
-
-  const [error, setError] = useState("");
 
   const handleNewPasswordSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +43,19 @@ function NewPassword({
 
     if (!token) {
       navigate("/login", { replace: true });
+      return;
+    }
+
+    const values = {
+      newPassword,
+      confirmPassword,
+    };
+
+    const validationErrors = validateForm(values);
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
       return;
     }
 
@@ -82,14 +98,22 @@ function NewPassword({
             id="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
+            className={errors.newPassword ? "form__input--error" : ""}
           />
+          {errors.newPassword && (
+            <p className="form__error">{errors.newPassword}</p>
+          )}
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className={errors.confirmPassword ? "form__input--error" : ""}
           />
+          {errors.confirmPassword && (
+            <p className="form__error">{errors.confirmPassword}</p>
+          )}
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Updating Password..." : "Change Password"}
           </button>

@@ -56,7 +56,7 @@ function StaffDashBoard() {
           </button>
         </NavLink>
         <button type="button" className="admin-dashboard-card">
-          + Add Card
+          Placeholder for styling purpose only at this stage
         </button>
       </div>
     </main>

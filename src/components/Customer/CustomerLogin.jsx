@@ -15,11 +15,28 @@ function CustomerLogin({
   setUserRole,
   mustChangePassword,
   setMustChangePassword,
+  validateForm,
+  errors,
+  setErrors,
 }) {
   const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
+    const values = {
+      applicationNumber,
+      lastName,
+      password,
+    };
+
+    const validationErrors = validateForm(values);
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
 
     try {
       const data = await signinApplicant({
@@ -62,21 +79,26 @@ function CustomerLogin({
             value={applicationNumber}
             onChange={(e) => setApplicationNumber(e.target.value)}
             placeholder="Application Number"
+            className={errors.applicationNumber ? "form__input--error" : ""}
           />
-
+          {errors.applicationNumber && (
+            <p className="form__error">{errors.applicationNumber}</p>
+          )}
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
+            className={errors.lastName ? "form__input--error" : ""}
           />
-
+          {errors.lastName && <p className="form__error">{errors.lastName}</p>}
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            className={errors.password ? "form__input--error" : ""}
           />
-
+          {errors.password && <p className="form__error">{errors.password}</p>}
           <button type="submit">Login</button>
         </form>
       </div>

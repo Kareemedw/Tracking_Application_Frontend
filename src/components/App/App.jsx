@@ -20,7 +20,75 @@ import LandingPage from "../LandingPage/LandingPage";
 import ProtectedRoute from "./ProtectedRoute";
 // import StaffHeader from "../Header/StaffHeader";
 
+const validateForm = (values) => {
+  const errors = {};
+
+  // Application Number
+  if ("applicationNumber" in values) {
+    if (!values.applicationNumber?.trim()) {
+      errors.applicationNumber = "Application number is required";
+    }
+  }
+
+  // First Name
+  if ("firstName" in values) {
+    if (!values.firstName?.trim()) {
+      errors.firstName = "First name is required";
+    }
+  }
+
+  // Last Name
+  if ("lastName" in values) {
+    if (!values.lastName?.trim()) {
+      errors.lastName = "Last name is required";
+    }
+  }
+
+  // Email
+  if ("email" in values) {
+    if (!values.email?.trim()) {
+      errors.email = "Email address is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+  }
+
+  // Login Password
+  if ("password" in values) {
+    if (!values.password) {
+      errors.password = "Password is required";
+    }
+  }
+
+  // New Password
+  if ("newPassword" in values) {
+    if (!values.newPassword) {
+      errors.newPassword = "New password is required";
+    } else if (values.newPassword.length < 8) {
+      errors.newPassword = "Password must contain at least 8 characters";
+    }
+  }
+
+  // Confirm Password
+  if ("confirmPassword" in values) {
+    if (!values.confirmPassword) {
+      errors.confirmPassword = "Please confirm your password";
+    } else if (
+      "newPassword" in values &&
+      values.confirmPassword !== values.newPassword
+    ) {
+      errors.confirmPassword = "Passwords do not match";
+    }
+  }
+
+  return errors;
+};
+
 function App() {
+  const [errors, setErrors] = useState({});
+
+  const [touched, setTouched] = useState({});
+
   const [selectedStepId, setSelectedStepId] = useState(null);
 
   const [applicant, setApplicant] = useState(null);
@@ -54,6 +122,14 @@ function App() {
   const [mustChangePassword, setMustChangePassword] = useState(true);
 
   const [isCheckingToken, setIsCheckingToken] = useState(true);
+
+  const handleValidate = (values) => {
+    const validationErrors = validateForm(values);
+
+    setErrors(validationErrors);
+
+    return Object.keys(validationErrors).length === 0;
+  };
 
   useEffect(() => {
     const getApplicants = async () => {
@@ -112,6 +188,9 @@ function App() {
                   setUserRole={setUserRole}
                   mustChangePassword={mustChangePassword}
                   setMustChangePassword={setMustChangePassword}
+                  validateForm={validateForm}
+                  setErrors={setErrors}
+                  errors={errors}
                 />
               </>
             }
@@ -130,6 +209,11 @@ function App() {
                   confirmPassword={confirmPassword}
                   setConfirmPassword={setConfirmPassword}
                   setMustChangePassword={setMustChangePassword}
+                  validateForm={validateForm}
+                  setErrors={setErrors}
+                  errors={errors}
+                  setError={setError}
+                  error={error}
                 />
               </ProtectedRoute>
             }
@@ -205,6 +289,9 @@ function App() {
                   setTemporaryPassword={setTemporaryPassword}
                   error={error}
                   setError={setError}
+                  validateForm={validateForm}
+                  setErrors={setErrors}
+                  errors={errors}
                 />
               </>
             }
