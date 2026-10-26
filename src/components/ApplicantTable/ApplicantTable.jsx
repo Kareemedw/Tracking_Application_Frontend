@@ -5,10 +5,10 @@ function ApplicantTable({ applicants, firstName, lastName }) {
   const navigate = useNavigate();
 
   return (
-    <div className="applicant-table__container">
-      <h2 className="applicant-table__title">Applicants</h2>
+    <div className="applicant__table-container">
+      <h2 className="applicant__table-title">Applicants</h2>
 
-      <table className="applicant-table">
+      <table className="applicant__table">
         <thead>
           <tr>
             <th>Name</th>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { BASE_URL } from "../../utils/constants";
-import { getCurrentApplicant } from "../../utils/api";
+import { getCustomerApplicant } from "../../utils/api";
 
 function Header({ mustChangePassword }) {
   const { applicantId } = useParams();
@@ -17,7 +17,7 @@ function Header({ mustChangePassword }) {
       try {
         setError("");
 
-        const data = await getCurrentApplicant(applicantId);
+        const data = await getCustomerApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 

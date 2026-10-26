@@ -35,6 +35,7 @@
   justify-content: center;
   gap: 12px;
   align-items: center;
+  flex-direction: column-reverse;
 }
 
 .landing__heading-image {

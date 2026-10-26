@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, NavLink } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  NavLink,
+  useParams,
+} from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -18,6 +24,11 @@ import NewPassword from "../Customer/NewPassword";
 import { BASE_URL } from "../../utils/constants";
 import LandingPage from "../LandingPage/LandingPage";
 import ProtectedRoute from "./ProtectedRoute";
+import {
+  getApplicants,
+  getCustomerApplicant,
+  getCurrentCustomer,
+} from "../../utils/api";
 // import StaffHeader from "../Header/StaffHeader";
 
 const validateForm = (values) => {
@@ -115,9 +126,13 @@ function App() {
 
   const [applicants, setApplicants] = useState([]);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return Boolean(localStorage.getItem("applicantToken"));
+  });
 
-  const [userRole, setUserRole] = useState(false);
+  const [userRole, setUserRole] = useState(() => {
+    return localStorage.getItem("applicantToken") ? "customer" : null;
+  });
 
   const [mustChangePassword, setMustChangePassword] = useState(true);
 
@@ -131,30 +146,58 @@ function App() {
     return Object.keys(validationErrors).length === 0;
   };
 
+  // const { applicantId } = useParams();
+  const [applicantId, setApplicantId] = useState(null);
+
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+
   useEffect(() => {
-    const getApplicants = async () => {
+    const fetchApplicants = async () => {
       try {
-        const token = localStorage.getItem("staffToken");
+        const data = await getApplicants();
 
-        const res = await fetch(`${BASE_URL}/applicants`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.message || "Unable to retrieve applicants");
-        }
-
-        setApplicants(data);
+        setApplicants(data.applicants ?? data);
       } catch (err) {
-        console.error(err);
+        console.error("Unable to retrieve applicants:", err);
       }
     };
 
-    getApplicants();
+    fetchApplicants();
+  }, []);
+
+  useEffect(() => {
+    const restoreSession = async () => {
+      const token = localStorage.getItem("applicantToken");
+
+      if (!token || token === "undefined" || token === "null") {
+        setIsLoggedIn(false);
+        setUserRole(null);
+        setMustChangePassword(false);
+        setIsAuthLoading(false);
+        return;
+      }
+
+      try {
+        const data = await getCurrentCustomer();
+
+        setIsLoggedIn(true);
+        setUserRole("customer");
+        setMustChangePassword(data.applicant.mustChangePassword);
+      } catch (err) {
+        console.error("Session verification failed:", err);
+
+        // localStorage.removeItem("applicantToken");
+        setIsLoggedIn(false);
+        setUserRole(null);
+        if (err.status === 401 || err.status === 403) {
+          localStorage.removeItem("applicantToken");
+        }
+      } finally {
+        setIsAuthLoading(false);
+      }
+    };
+
+    restoreSession();
   }, []);
 
   const selectedStep =
@@ -202,6 +245,8 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 userRole={userRole}
                 allowedRoles={["customer"]}
+                isAuthLoading={isAuthLoading}
+                applicantId={applicantId}
               >
                 <NewPassword
                   password={password}
@@ -254,6 +299,8 @@ function App() {
                 userRole={userRole}
                 allowedRoles={["customer"]}
                 mustChangePassword={mustChangePassword}
+                isAuthLoading={isAuthLoading}
+                applicantId={applicantId}
               >
                 <Header mustChangePassword={mustChangePassword} />
                 <Main mustChangePassword={mustChangePassword} />
@@ -337,7 +384,10 @@ function App() {
             path="/admin-dashboard/customer-controller/:applicantId"
             element={
               <>
-                <AdminController selectedStep={selectedStep} />
+                <AdminController
+                  selectedStep={selectedStep}
+                  applicantId={applicantId}
+                />
               </>
             }
           />

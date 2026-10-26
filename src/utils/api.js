@@ -60,7 +60,7 @@ export const changeApplicantPassword = async ({
   newPassword,
   confirmPassword,
 }) => {
-  const token = getApplicantToken();
+  const token = localStorage.getItem("applicantToken");
 
   const res = await fetch(`${BASE_URL}/customers/change-password`, {
     method: "PATCH",
@@ -78,8 +78,8 @@ export const changeApplicantPassword = async ({
 };
 
 // CUSTOMER: Get authenticated applicant
-export const getCurrentApplicant = async (applicantId) => {
-  const token = getApplicantToken();
+export const getCustomerApplicant = async (applicantId) => {
+  const token = localStorage.getItem("applicantToken");
 
   const res = await fetch(`${BASE_URL}/customers/${applicantId}`, {
     method: "GET",
@@ -91,11 +91,10 @@ export const getCurrentApplicant = async (applicantId) => {
   return checkResponse(res);
 };
 
-// STAFF: Get all applicants
-export const getApplicants = async () => {
-  const token = localStorage.getItem("staffToken");
+export const getApplicant = async (applicantId) => {
+  const token = localStorage.getItem("applicantToken");
 
-  const res = await fetch(`${BASE_URL}/customers/applicants`, {
+  const res = await fetch(`${BASE_URL}/applicants/${applicantId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -105,9 +104,57 @@ export const getApplicants = async () => {
   return checkResponse(res);
 };
 
+// STAFF: Get all applicants
+export const getApplicants = async () => {
+  const token = localStorage.getItem("applicantToken");
+
+  const res = await fetch(`${BASE_URL}/applicants`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return checkResponse(res);
+};
+
+export const getCurrentCustomer = async (applicantId) => {
+  const token = localStorage.getItem("applicantToken");
+
+  if (!token) {
+    throw new Error("Applicant not authenticated");
+  }
+
+  const res = await fetch(`${BASE_URL}/customers/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return checkResponse(res);
+};
+
+// export const getCurrentApplicant = async (applicantId) => {
+//   const token = localStorage.getItem("staffToken");
+
+//   if (!token) {
+//     throw new Error("Applicant not authenticated");
+//   }
+
+//   const res = await fetch(`${BASE_URL}/applicants/me`, {
+//     method: "GET",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   });
+
+//   return checkResponse(res);
+// };
+
 // STAFF: Create applicant
 export const createApplicant = async (applicantData) => {
-  const token = getApplicantToken();
+  const token = localStorage.getItem("applicantToken");
 
   const res = await fetch(`${BASE_URL}/applicants`, {
     method: "POST",
@@ -117,6 +164,24 @@ export const createApplicant = async (applicantData) => {
     },
     body: JSON.stringify(applicantData),
   });
+
+  return checkResponse(res);
+};
+
+export const updateApplicantStep = async (applicantId, stepNumber, updates) => {
+  const token = localStorage.getItem("staffToken");
+
+  const res = await fetch(
+    `${BASE_URL}/applicants/${applicantId}/steps/${stepNumber}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify(updates),
+    },
+  );
 
   return checkResponse(res);
 };

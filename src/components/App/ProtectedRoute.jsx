@@ -7,14 +7,22 @@ function ProtectedRoute({
   anonymous = false,
   allowedRoles = [],
   mustChangePassword,
+  isAuthLoading,
+  applicantId,
 }) {
   const location = useLocation();
-  const { applicantId } = useParams();
+  //   const { applicantId } = useParams();
+
+  if (isAuthLoading) {
+    return <p>Restoring your session...</p>;
+  }
 
   const dashboard =
-    userRole === "customer"
+    userRole === "customer" && applicantId
       ? `/customer-dashboard/${applicantId}`
-      : "/admin-dashboard";
+      : userRole === "staff"
+        ? "/admin-dashboard"
+        : "/login";
 
   const from = location.state?.from?.pathname || dashboard;
 

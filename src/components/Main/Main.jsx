@@ -3,7 +3,7 @@ import { useParams, NavLink, useNavigate } from "react-router-dom";
 import MessagePanel from "../MessagePanel/MessagePanel";
 import "./Main.css";
 import { BASE_URL } from "../../utils/constants";
-import { getCurrentApplicant } from "../../utils/api";
+import { getApplicant } from "../../utils/api";
 
 function Main({ mustChangePassword }) {
   const { applicantId } = useParams();
@@ -30,11 +30,11 @@ function Main({ mustChangePassword }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getApplicant = async () => {
+    const getApplicantCustomer = async () => {
       try {
         setError("");
 
-        const data = await getCurrentApplicant(applicantId);
+        const data = await getApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 
@@ -58,7 +58,7 @@ function Main({ mustChangePassword }) {
       }
     };
 
-    getApplicant();
+    getApplicantCustomer();
   }, [applicantId]);
 
   if (isLoading) {

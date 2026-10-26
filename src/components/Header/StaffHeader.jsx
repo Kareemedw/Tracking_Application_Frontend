@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import "./Header.css";
 import { BASE_URL } from "../../utils/constants";
+import { getCustomerApplicant } from "../../utils/api";
 
 function StaffHeader() {
   const { applicantId } = useParams();
@@ -13,9 +14,7 @@ function StaffHeader() {
 
     const getApplicant = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/applicants/${applicantId}`);
-
-        const data = await res.json();
+        const data = await getCustomerApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 

@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
 import "./AdminController.css";
+import {
+  updateApplicantStep,
+  getApplicants,
+  getApplicant,
+  getCustomerApplicant,
+} from "../../utils/api";
 
 function AdminController() {
   const { applicantId } = useParams();
@@ -12,17 +18,15 @@ function AdminController() {
   useEffect(() => {
     if (!applicantId) return;
 
-    const getApplicant = async () => {
+    const getApplicantStaff = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/applicants/${applicantId}`);
-
-        const data = await res.json();
+        const data = await getCustomerApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 
-        if (!res.ok) {
-          throw new Error(data.message || "Unable to retrieve applicant");
-        }
+        // // if (!data.ok) {
+        //   throw new Error(data.message || "Unable to retrieve applicant");
+        // }
 
         setApplicant(data);
       } catch (err) {
@@ -30,7 +34,7 @@ function AdminController() {
       }
     };
 
-    getApplicant();
+    getApplicantStaff();
   }, [applicantId]);
 
   if (error) {
@@ -52,26 +56,13 @@ function AdminController() {
     }
 
     try {
-      const res = await fetch(
-        `${BASE_URL}/applicants/${applicantId}/steps/${stepNumber}`,
-        {
-          method: "PATCH",
+      const data = await updateApplicantStep(applicantId, stepNumber, {
+        status: newStatus,
+      });
 
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            status: newStatus,
-          }),
-        },
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Unable to update status");
-      }
+      // if (!data.ok) {
+      //   throw new Error(data.message || "Unable to update status");
+      // }
 
       setApplicant(data);
     } catch (err) {
@@ -101,26 +92,13 @@ function AdminController() {
     console.log("MESSAGE BEING SENT:", newMessage);
 
     try {
-      const res = await fetch(
-        `${BASE_URL}/applicants/${applicantId}/steps/${stepNumber}`,
-        {
-          method: "PATCH",
+      const data = await updateApplicantStep(applicantId, stepNumber, {
+        actionRequiredMessage: newMessage,
+      });
 
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            actionRequiredMessage: newMessage,
-          }),
-        },
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Unable to update message");
-      }
+      // if (!data.ok) {
+      //   throw new Error(data.message || "Unable to update message");
+      // }
 
       setApplicant(data);
 
