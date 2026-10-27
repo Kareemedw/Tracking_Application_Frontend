@@ -19,7 +19,7 @@ function StaffRegistration({
         <h1 className="staff__loginandregistration-title">
           Staff Registration
         </h1>
-        <p>Register here</p>
+        <p className="staff__loginandregistration-container_p">Register here</p>
         <form
           className="staff__loginandregistration-form"
           onChange={handleSubmit}
@@ -29,20 +29,28 @@ function StaffRegistration({
             value={email}
             placeholder="Your staff email"
             onChange={(e) => setEmail(e.target.value)}
+            className="staff__loginandregistration-form_input"
           />
           <input
             type="password"
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            className="staff__loginandregistration-form_input"
           />
           <input
             type="password"
             value={confirmPassword}
             placeholder="Confirm Password"
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="staff__loginandregistration-form_input"
           />
-          <button type="submit">Login</button>
+          <button
+            type="submit"
+            className="staff__loginandregistration-form_button "
+          >
+            Login
+          </button>
         </form>
       </div>
     </main>

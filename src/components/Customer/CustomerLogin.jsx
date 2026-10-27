@@ -73,13 +73,17 @@ function CustomerLogin({
       </div>
       <div className="customer__container">
         <h1 className="customer__title"> Applicant Login</h1>
-        <p>Please Login to track your application</p>
+        <p className="customer__container-p">
+          Please Login to track your application
+        </p>
         <form onSubmit={handleLoginSubmit} className="customer__form">
           <input
             value={applicationNumber}
             onChange={(e) => setApplicationNumber(e.target.value)}
             placeholder="Application Number"
-            className={errors.applicationNumber ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.applicationNumber && (
             <p className="form__error">{errors.applicationNumber}</p>
@@ -88,7 +92,9 @@ function CustomerLogin({
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
-            className={errors.lastName ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.lastName && <p className="form__error">{errors.lastName}</p>}
           <input
@@ -96,10 +102,14 @@ function CustomerLogin({
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className={errors.password ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.password && <p className="form__error">{errors.password}</p>}
-          <button type="submit">Login</button>
+          <button className="customer__form-button" type="submit">
+            Login
+          </button>
         </form>
       </div>
     </main>

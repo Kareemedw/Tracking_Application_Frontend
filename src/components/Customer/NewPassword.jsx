@@ -90,31 +90,45 @@ function NewPassword({
       </div>
       <div className="customer__container">
         <h1 className="customer__title">New password</h1>
-        <p>Change temporary password to a permanent or personal password</p>
+        <p className="customer__container-p">
+          Change temporary password to a permanent or personal password
+        </p>
         <form className="customer__form" onSubmit={handleNewPasswordSubmit}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="customer__form-label">
+            Password
+          </label>
           <input
             type="password"
             id="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className={errors.newPassword ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.newPassword && (
             <p className="form__error">{errors.newPassword}</p>
           )}
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="customer__form-label">
+            Confirm Password
+          </label>
           <input
             type="password"
             id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className={errors.confirmPassword ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.confirmPassword && (
             <p className="form__error">{errors.confirmPassword}</p>
           )}
-          <button type="submit" disabled={isLoading}>
+          <button
+            className="customer__form-button"
+            type="submit"
+            disabled={isLoading}
+          >
             {isLoading ? "Updating Password..." : "Change Password"}
           </button>
         </form>

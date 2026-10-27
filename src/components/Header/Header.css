@@ -73,6 +73,21 @@
   align-items: center;
 }
 
+.nav__link,
+.dashboard__nav-link {
+  transition:
+    color 0.3s ease,
+    text-decoration-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.nav__link:hover,
+.dashboard__nav-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+  transform: translateY(-2px);
+}
+
 @media screen and (max-width: 700px) {
   .header__title h1 {
     font-size: 20px;

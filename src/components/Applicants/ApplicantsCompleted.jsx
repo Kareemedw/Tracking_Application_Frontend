@@ -6,7 +6,7 @@ function ApplicantsCompleted({ applicants }) {
   return (
     <main>
       <div className="admin__header">
-        <h1>
+        <h1 className="admin__header-title">
           Mission: Application Management Portal - List of Applicants with
           completed applications
         </h1>

@@ -20,7 +20,7 @@ function AdminController() {
 
     const getApplicantStaff = async () => {
       try {
-        const data = await getCustomerApplicant(applicantId);
+        const data = await getApplicant(applicantId);
 
         console.log("APPLICANT FROM BACKEND:", data);
 
@@ -124,7 +124,9 @@ function AdminController() {
   return (
     <main className="admin__container">
       <div className="admin__header">
-        <h1>Mission: Application Managment Portal</h1>
+        <h1 className="admin__header-title">
+          Mission: Application Managment Portal
+        </h1>
         <p>
           Name: {applicant.firstName} {applicant.lastName}
         </p>
@@ -138,13 +140,19 @@ function AdminController() {
       </div>
       {applicant.steps?.map((step) => (
         <div className="step__controller" key={step._id || step.id}>
-          <h2>Stage</h2>
+          <h2 className="step__controller-title">Stage</h2>
 
-          <p>{step.label}</p>
+          <p className="step__controller-statement">{step.label}</p>
 
-          <label htmlFor={`status-${step.stepNumber}`}>Status</label>
+          <label
+            className="step__controller-label"
+            htmlFor={`status-${step.stepNumber}`}
+          >
+            Status
+          </label>
 
           <select
+            className="step__controller-select"
             id={`status-${step.stepNumber}`}
             value={step.status}
             onChange={(e) =>
@@ -167,6 +175,7 @@ function AdminController() {
               </label>
 
               <textarea
+                className="action__message-textarea"
                 id={`message-${step.stepNumber}`}
                 value={
                   messageDrafts[step.stepNumber] ??

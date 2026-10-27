@@ -44,7 +44,7 @@
   background-color: red;
 }
 
-.footer_details {
+.footer__details {
   display: flex;
   justify-content: space-between;
   font-weight: 400;
@@ -55,13 +55,13 @@
   margin-top: 20px;
 }
 
-.developer-name {
+.developer__name {
   margin: 0;
   display: flex;
   align-items: center;
 }
 
-.development-date {
+.development__date {
   margin: 0;
   display: flex;
   align-items: center;

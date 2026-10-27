@@ -43,16 +43,16 @@
   height: 70px;
 }
 
-.landing__heading h1 {
+.landing__heading-h1 {
   font-size: 42px;
   color: #16345c;
 }
 
-.landing__heading h3 {
+.landing__heading-h3 {
   color: red;
 }
 
-.landing__heading p {
+.landing__heading-p {
   color: #5c6877;
 }
 
@@ -70,7 +70,7 @@
   box-shadow: 0 4px 18px #00000012;
 }
 
-.landing__card a {
+.landing__card-a {
   display: inline-block;
   margin-top: 20px;
   padding: 12px 24px;
@@ -78,6 +78,10 @@
   color: white;
   border-radius: 6px;
   text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
 }
 
 .landing__security {
@@ -85,12 +89,22 @@
   color: #667085;
 }
 
+.landing__card-a:hover {
+  background-color: #245a91;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(22, 52, 92, 0.25);
+}
+
+.landing__card-a:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 600px) {
   .landing__portals {
     grid-template-columns: 1fr;
   }
 
-  .landing__heading h1 {
+  .landing__heading-h1 {
     font-size: 30px;
   }
 }

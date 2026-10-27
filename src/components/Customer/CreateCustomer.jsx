@@ -69,65 +69,85 @@ function CreateCustomer({
       <div className="admin__header">
         <h1>Mission: Application Managament Portal</h1>
         <NavLink to="/admin-dashboard" className="dashboard__nav-link">
-          <p>Admin DashBoard</p>
+          <p className="customer__container-p">Admin DashBoard</p>
         </NavLink>
       </div>
       <div className="customer__container">
         <h1 className="customer__title">Create Applicant Login</h1>
-        <p>Create login credentials for a new applicant</p>
+        <p className="customer__container-p">
+          Create login credentials for a new applicant
+        </p>
         <form className="customer__form" onSubmit={handleSubmit}>
-          <label htmlFor="applicationNumber">Application Number</label>
+          <label className="customer__form-label" htmlFor="applicationNumber">
+            Application Number
+          </label>
           <input
             type="text"
             id="applicationNumber"
             value={applicationNumber}
             onChange={(e) => setApplicationNumber(e.target.value)}
-            className={errors.applicationNumber ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.applicationNumber && (
             <p className="form__error">{errors.applicationNumber}</p>
           )}
-          <label htmlFor="firstName">First Name</label>
+          <label className="customer__form-label" htmlFor="firstName">
+            First Name
+          </label>
           <input
             type="text"
             id="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className={errors.firstName ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.firstName && (
             <p className="form__error">{errors.firstName}</p>
           )}
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName" className="customer__form-label">
+            Last Name
+          </label>
           <input
             type="text"
             id="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className={errors.lastName ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.lastName && <p className="form__error">{errors.lastName}</p>}
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="customer__form-label">
+            Email
+          </label>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={errors.email ? "form__input--error" : ""}
+            className={`customer__form-input ${
+              errors.password ? "customer__form-input_error" : ""
+            }`}
           />
           {errors.email && <p className="form__error">{errors.email}</p>}
-          <button type="submit">Create Applicant</button>
+          <button className="customer__form-button" type="submit">
+            Create Applicant
+          </button>
         </form>
         {temporaryPassword && (
           <div className="temporary-password">
             <h3>Applicant Created Successfully</h3>
 
-            <p>
+            <p className="customer__container-p">
               Temporary Password:
               <strong> {temporaryPassword}</strong>
             </p>
 
-            <p>
+            <p className="customer__container-p">
               Provide this password to the applicant. They will be required to
               change it after their first login.
             </p>

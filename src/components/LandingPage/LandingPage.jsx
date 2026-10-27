@@ -15,15 +15,17 @@ function LandingPage() {
         </div>
         <div className="landing__heading">
           <div className="landing__heading landing__heading_1">
-            <h1>Welcome to PACTS</h1>
+            <h1 className="landing__heading-h1">Welcome to PACTS</h1>
             <img
               src={logo}
               alt="Pacts Logo"
               className="landing__heading-image"
             />
           </div>
-          <h2>Passport and Citizenship Application Tracking System</h2>
-          <p>
+          <h2 className="landing__heading-h2">
+            Passport and Citizenship Application Tracking System
+          </h2>
+          <p className="landing__heading-p">
             Securely track your application or access the staff management
             portal.
           </p>
@@ -32,14 +34,22 @@ function LandingPage() {
         <div className="landing__portals">
           <section className="landing__card">
             <h3>Applicant Login</h3>
-            <p>View your application status and receive important updates.</p>
-            <Link to="/login">Applicant Login</Link>
+            <p className="landing__heading-p">
+              View your application status and receive important updates.
+            </p>
+            <Link className="landing__card-a" to="/login">
+              Applicant Login
+            </Link>
           </section>
 
           <section className="landing__card">
             <h3>Staff Portal</h3>
-            <p>Manage applications and update applicant progress.</p>
-            <Link to="/admin-dashboard">Staff Portal</Link>
+            <p className="landing__heading-p">
+              Manage applications and update applicant progress.
+            </p>
+            <Link className="landing__card-a" to="/admin-dashboard">
+              Staff Portal
+            </Link>
           </section>
         </div>
 

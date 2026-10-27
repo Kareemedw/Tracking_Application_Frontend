@@ -11,16 +11,17 @@ function ApplicantTable({ applicants, firstName, lastName }) {
       <table className="applicant__table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Application Number</th>
-            <th>Account Status</th>
-            <th>Application Status</th>
+            <th className="applicant__table-th">Name</th>
+            <th className="applicant__table-th">Application Number</th>
+            <th className="applicant__table-th">Account Status</th>
+            <th className="applicant__table-th">Application Status</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="applicant__table-tbody">
           {applicants.map((applicant) => (
             <tr
+              className="applicant__table-tbody_tr"
               key={applicant._id}
               onClick={() =>
                 navigate(
@@ -28,15 +29,19 @@ function ApplicantTable({ applicants, firstName, lastName }) {
                 )
               }
             >
-              <td>
+              <td className="applicant__table-td">
                 {applicant.firstName} {applicant.lastName}
               </td>
 
-              <td>{applicant.applicationNumber}</td>
+              <td className="applicant__table-td">
+                {applicant.applicationNumber}
+              </td>
 
-              <td>{applicant.accountStatus}</td>
+              <td className="applicant__table-td">{applicant.accountStatus}</td>
 
-              <td>{applicant.applicationStatus}</td>
+              <td className="applicant__table-td">
+                {applicant.applicationStatus}
+              </td>
             </tr>
           ))}
         </tbody>

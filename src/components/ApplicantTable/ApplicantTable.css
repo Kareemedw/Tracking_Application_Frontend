@@ -23,62 +23,28 @@
   border-collapse: collapse;
 }
 
-.applicant__table th {
+.applicant__table-th {
   padding: 14px 16px;
   text-align: left;
   font-weight: 600;
   color: #6b7280;
 }
 
-.applicant__table td {
+.applicant__table-td {
   padding: 18px 16px;
   color: #1f2937;
 }
 
-.applicant__table th,
-.applicant__table td {
+.applicant__table-th,
+.applicant__table-td {
   border: none;
 }
 
-.applicant__table tbody tr {
+.applicant__table-tbody_tr {
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
-.applicant__table tbody tr:hover {
+.applicant__table-tbody_tr:hover {
   background-color: #f8fafc;
-}
-
-/* .account-status,
-.application-status {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.account-status--active {
-  background-color: #dcfce7;
-  color: #166534;
-} */
-
-.account-status--inactive {
-  background-color: #f3f4f6;
-  color: #4b5563;
-}
-
-.application-status--processing {
-  background-color: #fef3c7;
-  color: #92400e;
-}
-
-.application-status--approved {
-  background-color: #dcfce7;
-  color: #166534;
-}
-
-.application-status--action-required {
-  background-color: #fee2e2;
-  color: #991b1b;
 }

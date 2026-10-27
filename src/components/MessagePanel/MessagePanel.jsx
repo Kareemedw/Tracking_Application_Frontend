@@ -12,12 +12,14 @@ function MessagePanel({ selectedStep, statusInfo }) {
     <main className="message__panel">
       {selectedStep ? (
         <>
-          <h2>Stage {selectedStep.stepNumber}</h2>
+          <h2 className="message__panel-h2">Stage {selectedStep.stepNumber}</h2>
 
           {/* Use optional chaining (?.) to prevent crashes if the status key is missing */}
-          <h3>{currentStatus?.label || "Unknown Status"}</h3>
+          <h3 className="message__panel-h3">
+            {currentStatus?.label || "Unknown Status"}
+          </h3>
 
-          <h3>{selectedStep.label}</h3>
+          <h3 className="message__panel-h3">{selectedStep.label}</h3>
 
           <p>
             {selectedStep.message?.[selectedStep.status] ||

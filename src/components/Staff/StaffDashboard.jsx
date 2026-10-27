@@ -19,7 +19,7 @@ function StaffDashBoard() {
           to="/admin-dashboard/create-applicant"
           className="dashboard__nav-link"
         >
-          <button type="button" className="admin-dashboard-card">
+          <button type="button" className="admin__dashboard-card">
             Create Customer
           </button>
         </NavLink>
@@ -27,7 +27,7 @@ function StaffDashBoard() {
           to="/admin-dashboard/all-applicants"
           className="dashboard__nav-link"
         >
-          <button type="button" className="admin-dashboard-card">
+          <button type="button" className="admin__dashboard-card">
             List of all Applicants
           </button>
         </NavLink>
@@ -35,7 +35,7 @@ function StaffDashBoard() {
           to="/admin-dashboard/applicants-ongoing"
           className="dashboard__nav-link"
         >
-          <button type="button" className="admin-dashboard-card">
+          <button type="button" className="admin__dashboard-card">
             List of Applicants with applications ongoing
           </button>
         </NavLink>
@@ -43,7 +43,7 @@ function StaffDashBoard() {
           to="/admin-dashboard/applicants-completed"
           className="dashboard__nav-link"
         >
-          <button type="button" className="admin-dashboard-card">
+          <button type="button" className="admin__dashboard-card">
             List of Applicants with applications completed
           </button>
         </NavLink>
@@ -51,11 +51,11 @@ function StaffDashBoard() {
           to="/admin-dashboard/data-and-records"
           className="dashboard__nav-link"
         >
-          <button type="button" className="admin-dashboard-card">
+          <button type="button" className="admin__dashboard-card">
             Data and Records
           </button>
         </NavLink>
-        <button type="button" className="admin-dashboard-card">
+        <button type="button" className="admin__dashboard-card">
           Placeholder for styling purpose only at this stage
         </button>
       </div>

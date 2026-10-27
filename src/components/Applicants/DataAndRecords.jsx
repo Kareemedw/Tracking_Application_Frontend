@@ -5,7 +5,9 @@ function DataAndRecords() {
   return (
     <main>
       <div className="admin__header">
-        <h1>Mission: Application Managament Portal - Data and Records</h1>
+        <h1 className="admin__header-title">
+          Mission: Application Managament Portal - Data and Records
+        </h1>
         <NavLink className="applicant__nav-link" to="/admin-dashboard">
           <p>Admin DashBoard</p>
         </NavLink>

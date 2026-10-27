@@ -87,7 +87,7 @@ function Main({ mustChangePassword }) {
             <div className="step__container" key={step.stepNumber}>
               <button
                 type="button"
-                className={`step step--${step.status}`}
+                className={`step step_status_${step.status}`}
                 onClick={() => setSelectedStepId(step.stepNumber)}
               >
                 <div className="circle">{step.stepNumber}</div>
@@ -96,7 +96,7 @@ function Main({ mustChangePassword }) {
 
                 <div className="step__comment">
                   <strong>{status?.label || "Unknown Status"}</strong>
-                  <p>
+                  <p className="step__comment-p">
                     {step.message?.[step.status] ||
                       "No message has been provided."}
                   </p>
