@@ -151,6 +151,16 @@ function App() {
 
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
+  const handleSignOut = () => {
+    localStorage.removeItem("applicantToken");
+    localStorage.removeItem("staffToken");
+
+    setIsLoggedIn(false);
+    setUserRole(null);
+    setMustChangePassword(false);
+    setApplicantId(null);
+  };
+
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
@@ -302,7 +312,10 @@ function App() {
                 isAuthLoading={isAuthLoading}
                 applicantId={applicantId}
               >
-                <Header mustChangePassword={mustChangePassword} />
+                <Header
+                  mustChangePassword={mustChangePassword}
+                  handleSignOut={handleSignOut}
+                />
                 <Main mustChangePassword={mustChangePassword} />
               </ProtectedRoute>
             }

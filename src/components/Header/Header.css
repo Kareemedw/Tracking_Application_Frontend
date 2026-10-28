@@ -7,6 +7,25 @@
   font-size: 20px;
 }
 
+.signout__button {
+  min-height: 48px;
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: transparent;
+
+  font-family: inherit;
+  font-size: 20npx;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
 .header__colorCode {
   display: flex;
   justify-content: space-between;

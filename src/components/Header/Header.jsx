@@ -4,13 +4,18 @@ import "./Header.css";
 import { BASE_URL } from "../../utils/constants";
 import { getCustomerApplicant } from "../../utils/api";
 
-function Header({ mustChangePassword }) {
+function Header({ mustChangePassword, handleSignOut }) {
   const { applicantId } = useParams();
   const [applicant, setApplicant] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const onSignOut = () => {
+    handleSignOut();
+    navigate("/login", { replace: true });
+  };
 
   useEffect(() => {
     const getApplicant = async () => {
@@ -60,9 +65,12 @@ function Header({ mustChangePassword }) {
     <main className="header">
       <div className="header__title">
         <h1>Passport And Citizenship Tracking System (PACTS)</h1>
-        <NavLink to="/" className="nav__link">
+        <button className="signout__button" type="button" onClick={onSignOut}>
+          Sign Out
+        </button>
+        {/* <NavLink to="/" className="nav__link">
           <h4>Back to Welcome Page</h4>
-        </NavLink>
+        </NavLink> */}
       </div>
       <div className="header__title-customer">
         <p>
