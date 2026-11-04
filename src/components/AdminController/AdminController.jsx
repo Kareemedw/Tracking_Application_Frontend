@@ -9,7 +9,7 @@ import {
   getCustomerApplicant,
 } from "../../utils/api";
 
-function AdminController() {
+function AdminController({ onApplicantUpdate }) {
   const { applicantId } = useParams();
   const [applicant, setApplicant] = useState(null);
   const [messageDrafts, setMessageDrafts] = useState({});
@@ -64,7 +64,12 @@ function AdminController() {
       //   throw new Error(data.message || "Unable to update status");
       // }
 
-      setApplicant(data);
+      const updatedApplicant = data.applicant ?? data;
+
+      setApplicant(updatedApplicant);
+
+      // Refresh all applicant lists in App.jsx
+      await onApplicantUpdate?.();
     } catch (err) {
       setError(err.message);
     }

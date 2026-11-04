@@ -2,7 +2,13 @@ import { NavLink } from "react-router-dom";
 import "./Applicants.css";
 import ApplicantTable from "../ApplicantTable/ApplicantTable";
 
-function ApplicantsOngoing({ applicants }) {
+function ApplicantsOngoing({ applicants = [] }) {
+  const ongoingApplicants = applicants.filter(
+    (applicant) =>
+      applicant.applicationStatus === "processing" ||
+      applicant.applicationStatus === "actionRequired",
+  );
+
   return (
     <main>
       <div className="admin__header">
@@ -14,7 +20,10 @@ function ApplicantsOngoing({ applicants }) {
           <p>Admin DashBoard</p>
         </NavLink>
       </div>
-      <ApplicantTable applicants={applicants} />
+      <ApplicantTable
+        applicants={ongoingApplicants}
+        title="Ongoing Applications"
+      />
     </main>
   );
 }

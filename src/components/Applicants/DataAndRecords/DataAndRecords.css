@@ -1,0 +1,142 @@
+.records {
+  width: 100%;
+  font-family: "CabinetGrotesk-Regular", Arial, sans-serif;
+}
+
+.records__container {
+  margin-top: 60px;
+}
+
+.records__title {
+  font-size: 26px;
+  color: #16345c;
+  margin-bottom: 25px;
+}
+
+.records__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.records__card {
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.records__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.records__card-title {
+  font-size: 18px;
+  color: #475569;
+  margin-bottom: 15px;
+}
+
+.records__card-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: #16345c;
+}
+
+.records__card-description {
+  margin-top: 12px;
+  color: #64748b;
+}
+
+.records__breakdown {
+  margin-top: 60px;
+}
+
+.records__card_status_ongoing {
+  border-left: 5px solid darkgray;
+}
+
+.records__card_status_processing {
+  border-left: 5px solid #2563eb;
+}
+
+.records__card_status_actionRequired {
+  border-left: 5px solid #dc2626;
+}
+
+.records__card_status_completed {
+  border-left: 5px solid green;
+}
+
+.records__card_status_processing .records__card-value {
+  color: #2563eb;
+}
+
+.records__card_status_actionRequired .records__card-value {
+  color: #dc2626;
+}
+
+.records__card_status_completed .records__card-value {
+  color: green;
+}
+
+.records__progress {
+  display: flex;
+  width: 100%;
+  height: 18px;
+  margin-top: 30px;
+  background-color: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.records__progress-processing {
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.records__progress-action {
+  background-color: #dc2626;
+  transition: width 0.3s ease;
+}
+
+.records__progress-completed {
+  background-color: green;
+  transition: width 0.3s ease;
+}
+
+.records__total {
+  background-color: darkgray;
+  transition: width 0.3s ease;
+}
+
+@media screen and (max-width: 700px) {
+  .records__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .records__card {
+    padding: 22px;
+  }
+
+  .records__card-value {
+    font-size: 34px;
+  }
+
+  .records__title {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .records__card,
+  .records__progress-processing,
+  .records__progress-action {
+    transition: none;
+  }
+}

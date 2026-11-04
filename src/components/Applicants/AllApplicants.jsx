@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./Applicants.css";
 import ApplicantTable from "../ApplicantTable/ApplicantTable";
 
-function AllApplicants({ applicants, firstName, lastName }) {
+function AllApplicants({ applicants = [], title = "Applicants" }) {
   return (
     <main>
       <div className="admin__header">
@@ -13,11 +13,7 @@ function AllApplicants({ applicants, firstName, lastName }) {
           <p>Admin DashBoard</p>
         </NavLink>
       </div>
-      <ApplicantTable
-        applicants={applicants}
-        firstName={firstName}
-        lastName={lastName}
-      />
+      <ApplicantTable applicants={applicants} title="All Applicants" />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Routes,
   Route,
@@ -16,7 +16,7 @@ import StaffDashBoard from "../Staff/StaffDashBoard";
 import AllApplicants from "../Applicants/AllApplicants";
 import ApplicantsOngoing from "../Applicants/ApplicantsOngoing";
 import ApplicantsCompleted from "../Applicants/ApplicantsCompleted";
-import DataAndRecords from "../Applicants/DataAndRecords";
+import DataAndRecords from "../Applicants/DataAndRecords/DataAndRecords";
 import CustomerLogin from "../Customer/CustomerLogin";
 import StaffLogin from "../Staff/StaffLoginAndRegistration/StaffLogin";
 import StaffRegistration from "../Staff/StaffLoginAndRegistration/StaffRegistration";
@@ -161,19 +161,28 @@ function App() {
     setApplicantId(null);
   };
 
-  useEffect(() => {
-    const fetchApplicants = async () => {
-      try {
-        const data = await getApplicants();
+  const fetchApplicants = useCallback(async () => {
+    try {
+      const data = await getApplicants();
 
-        setApplicants(data.applicants ?? data);
-      } catch (err) {
-        console.error("Unable to retrieve applicants:", err);
-      }
-    };
-
-    fetchApplicants();
+      setApplicants(data.applicants ?? data);
+    } catch (err) {
+      console.error("Unable to retrieve applicants:", err);
+    }
   }, []);
+
+  useEffect(() => {
+    // const fetchApplicants = async () => {
+    //   try {
+    //     const data = await getApplicants();
+
+    //     setApplicants(data.applicants ?? data);
+    //   } catch (err) {
+    //     console.error("Unable to retrieve applicants:", err);
+    //   }
+    // };
+    fetchApplicants();
+  }, [fetchApplicants]);
 
   useEffect(() => {
     const restoreSession = async () => {
@@ -363,8 +372,6 @@ function App() {
                 <AllApplicants
                   applicants={applicants}
                   setApplicants={setApplicants}
-                  firstName={firstName}
-                  lastName={lastName}
                 />
               </>
             }
@@ -389,7 +396,7 @@ function App() {
             path="/admin-dashboard/data-and-records"
             element={
               <>
-                <DataAndRecords />
+                <DataAndRecords applicants={applicants} />
               </>
             }
           />
@@ -400,6 +407,7 @@ function App() {
                 <AdminController
                   selectedStep={selectedStep}
                   applicantId={applicantId}
+                  onApplicantUpdated={fetchApplicants}
                 />
               </>
             }

@@ -2,7 +2,11 @@ import { NavLink } from "react-router-dom";
 import "./Applicants.css";
 import ApplicantTable from "../ApplicantTable/ApplicantTable";
 
-function ApplicantsCompleted({ applicants }) {
+function ApplicantsCompleted({ applicants = [] }) {
+  const completedApplicants = applicants.filter(
+    (applicant) => applicant.applicationStatus === "approved",
+  );
+
   return (
     <main>
       <div className="admin__header">
@@ -14,7 +18,10 @@ function ApplicantsCompleted({ applicants }) {
           <p>Admin DashBoard</p>
         </NavLink>
       </div>
-      <ApplicantTable applicants={applicants} />
+      <ApplicantTable
+        applicants={completedApplicants}
+        title="Completed Applications"
+      />
     </main>
   );
 }

@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./ApplicantTable.css";
 
-function ApplicantTable({ applicants, firstName, lastName }) {
+function ApplicantTable({
+  applicants = [],
+  title = "Applicants" /*firstName, lastName*/,
+}) {
   const navigate = useNavigate();
 
   return (
@@ -40,12 +43,25 @@ function ApplicantTable({ applicants, firstName, lastName }) {
               <td className="applicant__table-td">{applicant.accountStatus}</td>
 
               <td className="applicant__table-td">
-                {applicant.applicationStatus}
+                {applicant.applicationStatus === "stageNotStarted"
+                  ? "Stage Not Started"
+                  : applicant.applicationStatus === "processing"
+                    ? "Processing"
+                    : applicant.applicationStatus === "approved"
+                      ? "Application Completed"
+                      : applicant.applicationStatus === "actionRequired"
+                        ? "Action Required"
+                        : "Unknown"}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {applicants.length === 0 && (
+        <p className="applicant__empty">
+          No applicants found in this category.
+        </p>
+      )}
     </div>
   );
 }
