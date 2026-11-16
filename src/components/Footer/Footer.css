@@ -1,6 +1,8 @@
 .footer {
   padding: 20px;
   border-top: 1px solid #ddd;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
 }
 
 .footer__colorCode {
@@ -16,12 +18,12 @@
   margin: 0;
 }
 
-.footer__status {
+/* .footer__status {
   display: flex;
   align-items: center;
   gap: 7px;
   font-size: 14px;
-}
+} */
 
 .footer__dot {
   width: 12px;
@@ -42,25 +44,24 @@
   background-color: red;
 }
 
-.footer_details {
+.footer__details {
   display: flex;
   justify-content: space-between;
   font-weight: 400;
   font-style: normal;
-  font-size: 16px;
   line-height: 1;
   letter-spacing: 0;
   color: rgba(33, 33, 33);
   margin-top: 20px;
 }
 
-.developer-name {
+.developer__name {
   margin: 0;
   display: flex;
   align-items: center;
 }
 
-.development-date {
+.development__date {
   margin: 0;
   display: flex;
   align-items: center;

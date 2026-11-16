@@ -5,20 +5,23 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  padding: 40px 20px;
-  color: #222;
+  margin: 0;
 }
 
-.tracker-container {
-  max-width: 640px;
+.tracker__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
+  width: 100%;
+  font-size: 20px;
 }
 
-.tracker-title {
+.tracker__title {
   text-align: center;
   font-size: 28px;
   margin-bottom: 40px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .tracker {
@@ -32,6 +35,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
+  font-family: "CabinetGrotesk-Regular", Arial, Helvetica, sans-serif;
 }
 
 .tracker::before {
@@ -88,19 +92,23 @@ body {
   visibility: visible;
 }
 
-.step__comment p {
+.step__comment-p {
   margin: 5px 0 0;
 }
 
-.step--processing .circle {
+.step_status_stageNotStarted .circle {
+  background-color: grey;
+}
+
+.step_status_processing .circle {
   background-color: #1976d2;
 }
 
-.step--approved .circle {
+.step_status_approved .circle {
   background-color: #16a34a;
 }
 
-.step--actionRequired .circle {
+.step_status_actionRequired .circle {
   background-color: #dc2626;
 }
 
@@ -120,9 +128,64 @@ body {
 }
 
 .label {
-  font-size: 14px;
   line-height: 1.4;
   padding: 0 8px;
+}
+
+.message__panel {
+  margin: 120px 0;
+  padding: 24px;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  background-color: #fff;
+
+  min-height: 200px;
+}
+
+.message__panel-h2 {
+  margin-top: 0;
+}
+
+.message__panel-h3 {
+  margin-bottom: 10px;
+}
+
+.step .circle {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.step .label {
+  transition: color 0.2s ease;
+}
+
+.step:hover .circle {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.2);
+}
+
+.step:hover .label {
+  color: #2563eb;
+}
+
+@media screen and (max-width: 700px) {
+  .step__controller {
+    padding: 18px;
+  }
+
+  .tracker__container {
+    display: flex;
+    flex-direction: column;
+  }
+  .tracker {
+    margin: 20px 0;
+  }
+  .message__panel {
+    margin: 20px 0;
+  }
 }
 
 @media (max-width: 970px) {
